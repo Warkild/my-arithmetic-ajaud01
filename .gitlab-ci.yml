@@ -2,6 +2,7 @@ image: python:3.8
 
 stages:
   - test
+  - deploy
 
 test:
   stage: test
@@ -12,5 +13,19 @@ test:
     - poetry run coverage run -m pytest
     - poetry run coverage report
   coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
+  tags:
+    - docker
+    
+deploy-stable:
+  stage: deploy
+  script:
+    - pip install poetry
+    - poetry install -v
+    - poetry build
+    - echo "my-arithmetic-ajaud01 deployment on stable servers"
+    - ls dist/
+  only:
+    - tags
+    - main
   tags:
     - docker
