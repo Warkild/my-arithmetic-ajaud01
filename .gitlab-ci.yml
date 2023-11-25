@@ -9,5 +9,8 @@ test:
     - pip install poetry
     - poetry install -v
     - poetry run tox
+    - poetry run coverage run -m pytest
+    - poetry run coverage report
+  coverage: '/(?i)total.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/'
   tags:
     - docker
