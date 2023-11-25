@@ -3,9 +3,3 @@ def pgcd(a, b):
         return a
     else:
         return pgcd(b, a % b)
-
-def pgcd2(a, b):
-    if(b == 0):
-        return a
-    else:
-        return pgcd(b, a % b)
